@@ -2,14 +2,17 @@ name: Update TakaTime Stats
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs every midnight UTC
-  workflow_dispatch:      # Allows manual trigger
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Needed to download releases
+      contents: write
 
     steps:
       - name: Download Taka-Report Binary
@@ -25,4 +28,4 @@ jobs:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           GIST_TOKEN: ${{ github.token }}
           TARGET_REPO: ${{ github.repository }}
-        run: ./taka-report -days=7 
+        run: ./taka-report -days=7 -theme tokyonight
