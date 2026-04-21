@@ -28,4 +28,4 @@ jobs:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           GIST_TOKEN: ${{ github.token }}
           TARGET_REPO: ${{ github.repository }}
-        run: ./taka-report -theme "monokai" -bg "#000000"
+        run: ./taka-report -theme "monokai" -bg "none"
